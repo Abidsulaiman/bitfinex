@@ -1,23 +1,28 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { PUBLIC_CHANNEL } from "../../config";
 
 const initialState = {
-  tradePair: null,
-  volume: null,
-  priceChange: null,
-  low: null,
-  high: null,
+  value: null,
+  status: false,
 };
 
+const ws = new WebSocket(PUBLIC_CHANNEL);
+
 export const tickerSlice = createSlice({
-  name: "counter",
+  name: "ticker",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    storeData: (state, action) => {
+      state.value = action.payload;
+      state.status = true;
+    },
+    disconnectSocket: (state) => {
+      ws.close();
+      state.status = false;
     },
   },
 });
 
-export const { increment } = tickerSlice.actions;
+export const { storeData, disconnectSocket } = tickerSlice.actions;
 
 export default tickerSlice.reducer;

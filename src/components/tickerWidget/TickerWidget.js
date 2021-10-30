@@ -1,8 +1,10 @@
 import React from "react";
 import { IoMdArrowDropup } from "react-icons/io";
+import { useSelector } from "react-redux";
 import "./TicketWidget.css";
 
 function TickerWidget() {
+  const { value } = useSelector((state) => state.ticker);
   return (
     <div className="tickerWidget card bg-dark border-0 shadow">
       <div className="card-body">
@@ -18,27 +20,30 @@ function TickerWidget() {
             <div className="points spaceBetween mb-1">
               <h4 className="mb-0">BTC/USD</h4>
 
-              <h4 className="mb-0">9,974.0</h4>
+              <h4 className="mb-0">{value ? value[0] : "..."}</h4>
             </div>
             <div className="volume spaceBetween mb-1">
               <p className="vol mb-0">
-                <span className="fw-bold">VOL</span> <span>13,962</span>{" "}
+                <span className="fw-bold">VOL</span>{" "}
+                <span>{value ? value[7].toFixed(2) : "..."}</span>{" "}
                 <span className="currency">BTC</span>
               </p>
               <p className="volChange mb-0">
-                86.50{" "}
+                {value ? value[3].toFixed(2) : "..."}
                 <span>
                   <IoMdArrowDropup fontSize="20px" />
                 </span>{" "}
-                (0.87%)
+                ({value ? value[5] : "..."})
               </p>
             </div>
             <div className="lowHigh spaceBetween mb-1">
               <p className="low mb-0">
-                <span className="fw-bold">LOW</span> <span>9,777.0</span>
+                <span className="fw-bold">LOW</span>{" "}
+                <span>{value ? value[8] : "..."}</span>
               </p>
               <p className="high mb-0">
-                <span className="fw-bold">HIGH</span> <span>10,471</span>
+                <span className="fw-bold">HIGH</span>{" "}
+                <span>{value ? value[9] : "..."}</span>
               </p>
             </div>
           </div>

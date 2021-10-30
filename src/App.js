@@ -1,25 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./App.css";
 import Header from "./components/header/Header";
 import TickerWidget from "./components/tickerWidget/TickerWidget";
-import { PUBLIC_CHANNEL } from "./config";
+import { MESSAGE, PUBLIC_CHANNEL } from "./config";
+import { storeData } from "./features/slices/tickerSlice";
+
+const ws = new WebSocket(PUBLIC_CHANNEL);
 
 function App() {
-  const [state, setState] = useState();
-
-  const ws = new WebSocket(PUBLIC_CHANNEL);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    ws.onmessage = (event) => {
+      let response = JSON.parse(event.data);
+      if (response[1] !== "hb") {
+        dispatch(storeData(response[1]));
+      }
+    };
+
     ws.onopen = () => {
       // on connecting, do nothing but log it to the console
       console.log("connected");
-    };
-
-    ws.onmessage = (evt) => {
-      // listen to data sent from the websocket server
-      const message = JSON.parse(evt.data);
-      setState({ dataFromServer: message });
-      console.log(message);
+      ws.send(MESSAGE);
     };
 
     ws.onclose = () => {
