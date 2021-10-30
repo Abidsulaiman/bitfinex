@@ -1,8 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
-  status: "idle",
+  tradePair: null,
+  volume: null,
+  priceChange: null,
+  low: null,
+  high: null,
 };
 
 export const tickerSlice = createSlice({
@@ -16,7 +19,5 @@ export const tickerSlice = createSlice({
 });
 
 export const { increment } = tickerSlice.actions;
-
-export const selectCount = (state) => state.counter.value;
 
 export default tickerSlice.reducer;
