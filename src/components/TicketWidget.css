@@ -1,8 +1,16 @@
 .tickerWidget .info {
   flex: 1;
+  color: aliceblue;
+}
+.tickerWidget .bitcoinIcon {
+  object-fit: contain;
 }
 .spaceBetween {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.tickerWidget .info .volChange {
+  color: lime;
 }
