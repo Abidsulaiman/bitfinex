@@ -1,0 +1,8 @@
+.tickerWidget .info {
+  flex: 1;
+}
+.spaceBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
