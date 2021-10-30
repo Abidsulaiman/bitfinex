@@ -4,7 +4,7 @@ import "./TicketWidget.css";
 
 function TickerWidget() {
   return (
-    <div className="tickerWidget card bg-dark">
+    <div className="tickerWidget card bg-dark border-0 shadow">
       <div className="card-body">
         <div className="d-flex align-items-center">
           <img

@@ -1,0 +1,11 @@
+.tickerAppHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tickerAppHeader .btn-success {
+  background: lime;
+  color: #333;
+  font-weight: 700;
+}

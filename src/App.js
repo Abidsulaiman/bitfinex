@@ -1,15 +1,12 @@
 import React from "react";
 import "./App.css";
-import TickerWidget from "./components/TickerWidget";
+import Header from "./components/header/Header";
+import TickerWidget from "./components/tickerWidget/TickerWidget";
 
 function App() {
   return (
     <div className="app">
-      <header className="py-3 bg-dark">
-        <h1 className="fs-3 fw-bold text-center text-secondary mb-0">
-          BitFinex Ticker App
-        </h1>
-      </header>
+      <Header title="BitFinex Ticker App" />
 
       <div className="container mt-5">
         <div className="row justify-content-center">
